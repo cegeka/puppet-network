@@ -1,25 +1,11 @@
 require 'rubygems'
-require 'puppetlabs_spec_helper/rake_tasks'
+require 'rake'
 
-desc "Run visual spec tests on an existing fixtures directory"
-RSpec::Core::RakeTask.new(:spec_standalonev) do |t|
-  t.rspec_opts = ['--color', '--format documentation']
-  t.pattern = 'spec/{classes,defines,unit}/**/*_spec.rb'
+task_dir = File.expand_path("../tasks", __FILE__)
+
+FileList["#{task_dir}/**/*.rake"].each { |fn| load fn }
+
+desc "Default task prints the available targets."
+task :default do
+  sh %{rake -T}
 end
-
-# https://github.com/stahnma/puppet-modules/blob/master/common/Rakefile
-desc "Check puppet and ERB for syntax errors."
-task :validate do
-  Dir['manifests/**/*.pp'].each do |path|
-    sh "puppet parser validate --noop #{path}"
-  end
-  Dir['templates/**/*.erb'].each do |path|
-    sh "erb -P -x -T '-' #{path} | ruby -c"
-  end
-end
-
-# Enable puppet-lint for all manifests: rake lint
-require 'puppet-lint/tasks/puppet-lint'
-#PuppetLint.configuration.send("disable_80chars") # no warnings on lines over 80 chars.
-PuppetLint.configuration.ignore_paths = ["spec/fixtures/**/*.pp", "pkg/**/*"]
-
