@@ -1,4 +1,4 @@
-# == Definition: network_if_base
+# == Definition: network::if::base
 #
 # This definition is private, i.e. it is not intended to be called directly
 # by users.  It can be used to write out the following device files:
@@ -51,7 +51,7 @@
 #
 # Copyright (C) 2011 Mike Arnold, unless otherwise noted.
 #
-define network_if_base (
+define network::if::base (
   $ensure,
   $ipaddress,
   $netmask,
@@ -120,4 +120,4 @@ define network_if_base (
     content => $iftemplate,
     notify  => Service['network'],
   }
-} # define network_if_base
+} # define network::if::base

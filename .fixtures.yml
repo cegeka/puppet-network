@@ -2,4 +2,4 @@ fixtures:
   repositories:
     stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
   symlinks:
-    network: "#{source_dir}"
+    "network": "#{source_dir}"
