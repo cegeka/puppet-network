@@ -60,6 +60,5 @@ define network::route (
     group   => 'root',
     path    => "/etc/sysconfig/network-scripts/route-${interface}",
     content => template('network/route-eth.erb'),
-    notify  => Service['network'],
   }
 } # define network::route
