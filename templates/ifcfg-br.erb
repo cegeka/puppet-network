@@ -29,3 +29,5 @@ DELAY=<%= @delay %>
 <% if @bridging_opts %>BRIDGING_OPTS="<%= @bridging_opts %>"
 <% end -%>
 NM_CONTROLLED=no
+<% if @vlan %>VLAN=yes
+<% end -%>
