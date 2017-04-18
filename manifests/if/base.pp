@@ -24,7 +24,7 @@
 #   $dns2         - optional
 #   $domain       - optional
 #   $bridge       - optional
-#   $vlan         - optional - defaults to no
+#   $vlan         - optional - defaults to false
 #
 # === Actions:
 #
@@ -69,7 +69,7 @@ define network::if::base (
   $dns2 = '',
   $domain = '',
   $bridge = '',
-  $vlan = 'no'
+  $vlan = false
 ) {
   # Validate our booleans
   validate_bool($userctl)
