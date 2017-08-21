@@ -120,6 +120,5 @@ define network::if::base (
     group   => 'root',
     path    => "/etc/sysconfig/network-scripts/ifcfg-${interface}",
     content => $iftemplate,
-    notify  => Service['network'],
   }
 } # define network::if::base
