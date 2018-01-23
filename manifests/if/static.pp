@@ -59,7 +59,13 @@ define network::if::static (
   if ! is_ip_address($ipaddress) { fail("${ipaddress} is not an IP address.") }
 
   if ! is_mac_address($macaddress) {
-    $macaddy = getvar("::macaddress_${title}")
+    case $title {
+    /\./: {
+      $_title=regsubst($title, '\.', '_')
+      $macaddy = getvar("::macaddress_${_title}")
+    }
+    default: { $macaddy = getvar("::macaddress_${title}") }
+    }
   } else {
     $macaddy = $macaddress
   }
